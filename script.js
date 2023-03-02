@@ -2,9 +2,13 @@
 
 let numberOfFilms;
 
-do {
-    numberOfFilms = prompt('Сколько фильмов вы уже посмотрели?', '');
-} while (numberOfFilms == null || numberOfFilms.trim() == '' || numberOfFilms.length >= 50);
+function start() {
+    do {
+        numberOfFilms = prompt('Сколько фильмов вы уже посмотрели?', '');
+    } while (numberOfFilms == null || numberOfFilms.trim() == '' || numberOfFilms.length >= 50 || isNaN(numberOfFilms));
+}
+
+start();
 
 const personalMovieDB = {
   count: numberOfFilms,
@@ -14,31 +18,59 @@ const personalMovieDB = {
   privat: false
 };
 
-for(let i = 0; i < 2; i++){
+function rememberMyFilms(){
 
-    let a;
-    do {
-        a = prompt('Один из последних просмотренных фильмов', '');
-    } while ( a == null || a.trim() == '' || a.length >= 50);
+    for(let i = 0; i < 2; i++){
+
+        let a;
+        do {
+            a = prompt('Один из последних просмотренных фильмов', '');
+        } while ( a == null || a.trim() == '' || a.length >= 50);
+        
+        let b;
+        do {
+            b = prompt('На сколько оцените его', '');
+        } while ( b == null || b.trim() == '' || b.length >= 50);
     
-    let b;
-    do {
-        b = prompt('На сколько оцените его', '');
-    } while ( b == null || b.trim() == '' || b.length >= 50);
-
-     personalMovieDB.movies[a] = b;
+         personalMovieDB.movies[a] = b;
+    }
 }
 
- if(personalMovieDB.count >= 0 && personalMovieDB.count < 10){
-    alert('Просмотренно довольно мало фильмов');
-} else if (personalMovieDB.count >= 10 && personalMovieDB.count <= 30)  {
-    alert('Вы классический зритель');
-}else if (personalMovieDB.count > 30){
-    alert('Вы киноман');
-} else if(personalMovieDB.count !== 'number'){
-    alert('Произошла ошибка');}
+// rememberMyFilms();
 
-console.log(personalMovieDB);
+function detectPersonalLevel() {
+
+    if(personalMovieDB.count >= 0 && personalMovieDB.count < 10){
+        alert('Просмотренно довольно мало фильмов');
+    } else if (personalMovieDB.count >= 10 && personalMovieDB.count <= 30)  {
+        alert('Вы классический зритель');
+    }else if (personalMovieDB.count > 30){
+        alert('Вы киноман');
+    } else if(personalMovieDB.count !== 'number'){
+        alert('Произошла ошибка');}
+
+}
+
+// detectPersonalLevel();
+
+function showMyDB() {
+
+   if (personalMovieDB.privat == false){
+    console.log(personalMovieDB);
+   }
+}
+
+showMyDB();
+
+function writeYourGenres(){
+     for (let i = 0; i < 3; i++){
+        let answer = prompt(`Ваш любимый жанр по номером ${i + 1}`, '');
+        personalMovieDB.genres[i] = answer;
+     }
+}
+
+writeYourGenres();
+showMyDB();
 
 // const hamburger = 5;
 // const fries = null;
@@ -185,3 +217,65 @@ console.log(personalMovieDB);
 //         amountStars += 2;
 //     }
 //     console.log(result);
+
+// const usdCurr = 28;
+// const discount = 0.9;
+
+// function convert(amount, curr) {
+//     return curr * amount;
+// }
+
+// function promotion(result){
+//     console.log(result * discount);
+// }
+// promotion(convert(500, usdCurr));
+
+// function test(){
+//     for (let i = 0; i < 5; i++){
+//         console.log(i);
+//         if(i === 3) return
+//     }
+//     console.log("Done");
+// }
+// test();
+
+// function sayHello(name) {
+//     let result = "Привет, " + name + "!";
+//     return result;
+// }
+
+// let funcResult = sayHello("Данил");
+// console.log(funcResult);
+
+// function returnNeighboringNumbers(myNumber) {
+//     if (typeof myNumber === 'number'){
+//          let myArray = [myNumber - 1, myNumber, myNumber + 1];
+//          return myArray;
+//     }
+//     return [];
+    
+// }
+
+// let funcRes = returnNeighboringNumbers("Hi");
+// console.log(funcRes);
+
+// function getMathResult(myBase, myStep) {
+//     if (typeof myStep !== 'number') {
+//         return myBase;
+//     }
+    
+//     let delimeter = "---";
+//     let loopRes = myBase;
+//     let calculation = myBase;
+    
+//     for(let i = 1; i < myStep; i++){
+//         calculation = calculation + myBase;
+//         loopRes = loopRes + delimeter + calculation;
+//     }
+    
+//     return loopRes;
+// }
+
+// let functionRes = getMathResult(3, );
+// console.log(functionRes);
+
